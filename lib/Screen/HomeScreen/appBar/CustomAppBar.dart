@@ -10,7 +10,7 @@ final double scrolloffset;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24.0,),
       color: Colors.black.withOpacity((scrolloffset/350).clamp(0,1).toDouble()),
-      child: Responsive(
+      child: const Responsive(
          mobile: _CustomAppBarMobile(),
         desktop: _CustomAppBarDesktop(),
         tablet: _CustomAppBarMobile(),
@@ -34,12 +34,9 @@ class _CustomAppBarMobile extends StatelessWidget {
     //crossAxisAlignment: CrossAxisAlignment.end,
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _AppbarButton(title: "TV Shows",
-            onTap: () {print("TV Shows");}),
-        _AppbarButton(title: "Movies",
-            onTap: () {print("TV Shows");}),
-        _AppbarButton(title: "My List",
-            onTap: () {print("TV Shows");}),
+        _AppbarButton(title: "TV Shows", onTap: () {print("TV Shows");}),
+        _AppbarButton(title: "Movies", onTap: () {print("TV Shows");}),
+        _AppbarButton(title: "My List", onTap: () {print("TV Shows");}),
       ],),),],
     ),);}
 }
@@ -60,22 +57,15 @@ class _CustomAppBarDesktop extends StatelessWidget {
               //crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _AppbarButton(title: "Home",
-                    onTap: () {print("Home");}),
+                _AppbarButton(title: "Home", onTap: () {print("Home");}),
 
-                _AppbarButton(title: "TV Shows",
-                    onTap: () {print("TV Shows");}),
+                _AppbarButton(title: "TV Shows", onTap: () {print("TV Shows");}),
 
-                _AppbarButton(title: "Movies",
-                    onTap: () {print("Movies");}),
+                _AppbarButton(title: "Movies", onTap: () {print("Movies");}),
 
-                _AppbarButton(title: "Latest",
-                    onTap: () {print("Latest");}),
+                _AppbarButton(title: "Latest", onTap: () {print("Latest");}),
 
-                _AppbarButton(title: "My List",
-                    onTap: () {print("My List");}),
-
-
+                _AppbarButton(title: "My List", onTap: () {print("My List");}),
               ],),),
           const Spacer(),
           Expanded(
@@ -83,42 +73,38 @@ class _CustomAppBarDesktop extends StatelessWidget {
               //crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                IconButton(
-                  onPressed: ()=>print("Searh"),
-                    icon: Icon(Icons.search,),
-                  iconSize: 28.0,
-                  color: Colors.white,
-                  padding: EdgeInsets.zero,
-                ),
-                _AppbarButton(title: "Home",
-                    onTap: () {print("Home");}),
+                AppBarIcon(Icons: Icons.search, onTab: ()=>print("Searh")),
 
-                _AppbarButton(title: "Kids",
-                    onTap: () {print("Kids");}),
+                _AppbarButton(title: "Home", onTap: () {print("Home");}),
 
-                _AppbarButton(title: "DVD",
-                    onTap: () {print("DVD");}),
+                _AppbarButton(title: "Kids", onTap: () {print("Kids");}),
 
-                IconButton(
-                  onPressed: ()=>print("card_giftcard"),
-                  icon: Icon(Icons.card_giftcard,),
-                  iconSize: 28.0,
-                  color: Colors.white,
-                  padding: EdgeInsets.zero,
-                ),
-                IconButton(
-                  onPressed: ()=>print("notifications"),
-                  icon: Icon(Icons.notifications,),
-                  iconSize: 28.0,
-                  color: Colors.white,
-                  padding: EdgeInsets.zero,
-                ),
+                _AppbarButton(title: "DVD", onTap: () {print("DVD");}),
 
+                AppBarIcon(Icons: Icons.card_giftcard, onTab: ()=>print("card_giftcard")),
 
-
+                AppBarIcon(Icons: Icons.notifications, onTab: ()=>print("notifications")),
               ],),),
         ],
       ),);}
+}
+
+
+class AppBarIcon extends StatelessWidget {
+  final IconData Icons;
+  final VoidCallback onTab;
+  const AppBarIcon({Key? key,required this.Icons,required this.onTab}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: onTab,
+      icon: Icon(Icons),
+      iconSize: 28.0,
+      color: Colors.white,
+      padding: EdgeInsets.zero,
+    );
+  }
 }
 
 
@@ -133,7 +119,7 @@ _AppbarButton({required this.title,required this.onTap});
       GestureDetector(
       onTap: onTap,
       child: Text(title ,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 16,
           fontWeight: FontWeight.w600,

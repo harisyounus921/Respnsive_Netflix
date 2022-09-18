@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_responsive/Responsiveness/responsive.dart';
-import 'package:netflix_responsive/Screen/HomeScreen/VideoPlayer/VerticalIconButton.dart';
 import 'package:netflix_responsive/models/content_model.dart';
 import 'package:video_player/video_player.dart';
 
@@ -38,7 +37,7 @@ class _ContentHeaderMobile extends StatelessWidget {
         ),
         Container(
           height: 500,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Colors.black,Colors.transparent],
                 begin: Alignment.bottomCenter,
@@ -60,17 +59,11 @@ class _ContentHeaderMobile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                VerticalIconButton(
-                  icon:Icons.add,
-                  title:"List",
-                  onTap:()=>print("My List"),
-                ),
-                _PlayButton(),
-                VerticalIconButton(
-                  icon:Icons.info_outline ,
-                  title:"info",
-                  onTap:()=>print("Info"),
-                ),
+                VerticalIconButton(icon:Icons.add, title:"List",onTap:()=>print("My List"),),
+
+                _ContentHeaderButton(onTap: ()=>print('Play'), title: 'Play',icon: Icons.play_arrow,),
+
+                VerticalIconButton(icon:Icons.info_outline , title:"info", onTap:()=>print("Info"),),
               ],
             ))
       ],
@@ -124,7 +117,7 @@ bool isMute=true;
           _videoController.value.aspectRatio:
           2.344,
             child:Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Colors.black,Colors.transparent],
                     begin: Alignment.bottomCenter,
@@ -153,26 +146,19 @@ bool isMute=true;
                       Shadow(
                         color: Colors.black,
                         offset: Offset(2.0,4.0),
-                        blurRadius: 6
+                        blurRadius: 6,
                       ),
                     ],
                   ),),
                   const SizedBox(height: 20,),
                   Row(
                     children: [
-                      _PlayButton(),
+                      _ContentHeaderButton(onTap: ()=>print('Play'), title: 'Play', icon: Icons.play_arrow,),
+
                       const SizedBox(width: 16,),
-                      TextButton.icon(
-                          onPressed:()=>print('More info'),
-                          style: TextButton.styleFrom(
-                              padding:const EdgeInsets.fromLTRB(25, 10, 30, 10),
-                              backgroundColor: Colors.white),
-                          icon: Icon(Icons.info_outline,size: 30.0,color: Colors.black,),
-                          label:Text('More info',style: TextStyle(fontSize: 16.0,
-                              fontWeight: FontWeight.w600,color: Colors.black),
-                          ),),
-                      const SizedBox(width: 16,),
+                      _ContentHeaderButton(onTap: ()=>print('More info'), title: 'More info', icon: Icons.info_outline,),
                       const SizedBox(width: 20,),
+
                       if(_videoController.value.isInitialized)
                         IconButton(
                           icon: Icon(
@@ -199,20 +185,43 @@ bool isMute=true;
 }
 
 
-class _PlayButton extends StatelessWidget {
-  const _PlayButton({Key? key}) : super(key: key);
+class _ContentHeaderButton extends StatelessWidget {
+  final String title;
+  final VoidCallback onTap;
+  final IconData icon;
+  const _ContentHeaderButton({Key? key,required this.title,required this.onTap,required this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-      onPressed:()=>print('Play'),
+      onPressed:onTap,
         style: TextButton.styleFrom(
-            padding: Responsive.isDesktop(context)?
+            padding: Responsive.isMoblie(context)?
             const EdgeInsets.fromLTRB(15, 5, 20, 5):
             const EdgeInsets.fromLTRB(25, 10, 30, 10),
             backgroundColor: Colors.white),
-        icon: Icon(Icons.play_arrow,size: 30.0,color: Colors.black,),
-        label:Text('Play',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w600,color: Colors.black),));
+        icon: Icon(icon,size: 30.0,color: Colors.black,),
+        label:Text(title,style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w600,color: Colors.black),));
   }
 }
 
+class VerticalIconButton extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final VoidCallback onTap;
+  const VerticalIconButton({Key? key,required this.title,required this.onTap,required this.icon}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Icon(icon,color: Colors.white,),
+          const SizedBox(height: 2.0,),
+          Text(title,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w600),),
+        ],
+      ),
+    );
+  }
+}

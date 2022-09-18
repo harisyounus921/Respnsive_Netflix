@@ -26,9 +26,8 @@ class Preview extends StatelessWidget {
               itemCount: contentList.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context,int index){
-               final Content content=contentList[index];
                 return GestureDetector(
-                  onTap: ()=>print(content.name),
+                  onTap: ()=>print(contentList[index].name),
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
@@ -38,29 +37,25 @@ class Preview extends StatelessWidget {
                         width: 130,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(content.imageUrl),
+                            image: AssetImage(contentList[index].imageUrl),
                             fit: BoxFit.cover,
                           ),
                           shape: BoxShape.circle,
-                          border: Border.all(color: content.color,width: 4),
+                          border: Border.all(color: contentList[index].color,width: 4),
                         ),
                       ),
                       Container(
                         height: 130,
                         width: 130,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                              colors:[
-                              Colors.black87,
-                                Colors.black45,
-                                Colors.transparent,
-                              ],
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              colors:[Colors.black87, Colors.black45, Colors.transparent,],
                           stops: [0,0.25,1],
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter,
                           ),
                           shape: BoxShape.circle,
-                          border: Border.all(color: content.color,width: 4),
+                         // border: Border.all(color: contentList[index].color,width: 4),
                         ),
                       ),
                       Positioned(
@@ -69,7 +64,7 @@ class Preview extends StatelessWidget {
                           bottom: 0,
                           child: SizedBox(
                             height: 60,
-                            child: Image.asset(content.titleImageUrl),
+                            child: Image.asset(contentList[index].titleImageUrl),
                           ),),
                     ],
                   ),
