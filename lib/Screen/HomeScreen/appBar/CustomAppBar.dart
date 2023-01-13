@@ -13,7 +13,7 @@ final double scrolloffset;
       child: const Responsive(
          mobile: _CustomAppBarMobile(),
         desktop: _CustomAppBarDesktop(),
-        tablet: _CustomAppBarMobile(),
+        tablet: _CustomAppBarDesktop(),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_responsive/models/content_model.dart';
 
+import '../../../routes.dart';
+
 class Preview extends StatelessWidget {
   final String title;
   final List<Content> contentList;
@@ -27,7 +29,16 @@ class Preview extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context,int index){
                 return GestureDetector(
-                  onTap: ()=>print(contentList[index].name),
+                  onTap: ()=>  Navigator.pushNamed(context, RouteName.movieDetailsScreen,
+                    arguments:{
+                      'imageurl':contentList[index].imageUrl ,
+                      'title':contentList[index].name ,
+                      'duration':contentList[index].name ,
+                      'year':contentList[index].name ,
+                      'rating':contentList[index].name,
+                      'description':contentList[index].description ,
+                    },
+                  ),
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
@@ -45,6 +56,7 @@ class Preview extends StatelessWidget {
                         ),
                       ),
                       Container(
+                        margin: EdgeInsets.symmetric(horizontal: 16),
                         height: 130,
                         width: 130,
                         decoration: const BoxDecoration(
@@ -64,8 +76,8 @@ class Preview extends StatelessWidget {
                           bottom: 0,
                           child: SizedBox(
                             height: 60,
-                            child: Image.asset(contentList[index].titleImageUrl),
-                          ),),
+                            child: Image.asset(contentList[index].titleImageUrl),),
+                      ),
                     ],
                   ),
                 );

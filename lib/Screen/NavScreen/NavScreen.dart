@@ -14,11 +14,11 @@ class NavScreen extends StatefulWidget {
 
 class _NavScreenState extends State<NavScreen> {
   final List<Widget>_screens=[
-    HomeScreen(key:PageStorageKey('homeScreen')),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
+    const HomeScreen(key:PageStorageKey('homeScreen')),
+    const Scaffold(body: Center(child: Text("Games",style: TextStyle(color: Colors.white),)),),
+    const Scaffold(body: Center(child: Text("News & Hot",style: TextStyle(color: Colors.white))),),
+    const Scaffold(body: Center(child: Text("Quick Laughs",style: TextStyle(color: Colors.white))),),
+    const Scaffold(body: Center(child: Text("Downloads",style: TextStyle(color: Colors.white))),),
   ];
 
   final Map <String,IconData> _icons=const{

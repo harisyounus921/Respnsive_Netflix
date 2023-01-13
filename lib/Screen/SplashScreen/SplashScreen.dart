@@ -3,6 +3,8 @@ import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_responsive/Screen/NavScreen/NavScreen.dart';
 
+import '../../routes.dart';
+
 class Splashscreen extends StatefulWidget {
   @override
   _SplashscreenState createState() => _SplashscreenState();
@@ -16,7 +18,7 @@ class _SplashscreenState extends State<Splashscreen> {
   }
   void login()async{
       Timer(Duration(seconds: 4), (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>NavScreen()));
+        Navigator.pushNamed(context, RouteName.navScreen);
       });
   }
   @override

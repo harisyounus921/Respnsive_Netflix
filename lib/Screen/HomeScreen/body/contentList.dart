@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/content_model.dart';
+import '../../../routes.dart';
+import '../movie_details_screen/Details_screen.dart';
 
 class ContentList extends StatelessWidget {
   final String title;
@@ -27,7 +29,16 @@ class ContentList extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 16),
                 itemBuilder:(BuildContext context,int index){
                   return GestureDetector(
-                    onTap: ()=>print(contentList[index].name),
+                    onTap: ()=>  Navigator.pushNamed(context, RouteName.movieDetailsScreen,
+                      arguments:{
+                        'imageurl':contentList[index].imageUrl ,
+                        'title':contentList[index].name ,
+                        'duration':contentList[index].name ,
+                        'year':contentList[index].name ,
+                        'rating':contentList[index].name,
+                        'description':contentList[index].description ,
+                      },
+                    ),
                     child: Container(
                       margin: EdgeInsets.symmetric(horizontal: 8),
                       height: isOriginals?400:200,
