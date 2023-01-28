@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Netflix Responsive',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: true,
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         scaffoldBackgroundColor:Colors.black

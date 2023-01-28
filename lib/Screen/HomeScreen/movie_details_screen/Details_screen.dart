@@ -160,14 +160,11 @@ class MovieDetailsScreen extends StatelessWidget {
       bottomNavigationBar: Row(
         children: <Widget>[
           Expanded(
-            child: RaisedButton(
-              padding: const EdgeInsets.only(
-                top: 20,
-                bottom: 20,
-              ),
+            child: TextButton(
+              //padding: const EdgeInsets.only(top: 20, bottom: 20,),
               onPressed: () {},
-              color:Colors.white,
-              textColor: Colors.black,
+              //color:Colors.white,
+              //textColor: Colors.black,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -185,14 +182,11 @@ class MovieDetailsScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: RaisedButton(
-              padding: const EdgeInsets.only(
-                top: 20,
-                bottom: 20,
-              ),
+            child: ElevatedButton(
+              //padding: const EdgeInsets.only(top: 20, bottom: 20,),
               onPressed: () {},
-              color: Colors.red,
-              textColor: Colors.black,
+              //color: Colors.red,
+              //textColor: Colors.black,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

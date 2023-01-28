@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:netflix_responsive/Responsiveness/responsive.dart';
 import 'package:netflix_responsive/Screen/HomeScreen/HomeScreen.dart';
 import 'package:provider/provider.dart';
-
 import '../../Provider/scrollofsetProvider.dart';
 
 class NavScreen extends StatefulWidget {
